@@ -1,4 +1,4 @@
-<h2>Rectangle Creator</h2>
+<h2>Node Creator</h2>
 <p>
   Node Type:
   <select id="nodeType">
@@ -8,40 +8,29 @@
 </p>
 <p>
   Count:
-  <input id="count" value="5">
+  <input id="count" value="5" type="number">
 </p>
 <p>
   Width:
-  <input id="width" value="100">
+  <input id="width" value="100" type="number">
 </p>
 <p>
   Height:
-  <input id="height" value="100">
+  <input id="height" value="100" type="number">
 </p>
 <p>
   Space:
-  <input id="space" value="50">
+  <input id="space" value="50" type="number">
 </p>
 <button id="create">Create</button>
-<button id="cancel">Cancel</button>
-<script>
 
+<script>
 document.getElementById('create').onclick = () => {
-  const selectbox = document.getElementById('nodeType');
-  const nodeType = selectbox.value;
-  const countbox = document.getElementById('count');
-  const count = parseInt(countbox.value, 10);
-  const widthbox = document.getElementById('width');
-  const width = parseInt(widthbox.value, 10);
-  const heightbox = document.getElementById('height');
-  const height = parseInt(heightbox.value, 10);
-  const spacebox = document.getElementById('space');
-  const space = parseInt(spacebox.value, 10);
+  const nodeType = document.getElementById('nodeType').value;
+  const count = parseInt(document.getElementById('count').value, 10);
+  const width = parseInt(document.getElementById('width').value, 10);
+  const height = parseInt(document.getElementById('height').value, 10);
+  const space = parseInt(document.getElementById('space').value, 10);
   parent.postMessage({ pluginMessage: { type: 'create-rectangles', nodeType, count, width, height, space } }, '*')
 }
-
-document.getElementById('cancel').onclick = () => {
-  parent.postMessage({ pluginMessage: { type: 'cancel' } }, '*')
-}
-
 </script>
