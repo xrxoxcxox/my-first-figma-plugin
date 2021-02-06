@@ -1,5 +1,4 @@
 <h2>Rectangle Creator</h2>
-<p>Count: <input id="count" value="5"></p>
 <p>
   Node Type:
   <select id="nodeType">
@@ -7,16 +6,32 @@
     <option value="ellipse">Ellipse</option>
   </select>
 </p>
+<p>
+  Count:
+  <input id="count" value="5">
+</p>
+<p>
+  Width:
+  <input id="width" value="100">
+</p>
+<p>
+  Height:
+  <input id="height" value="100">
+</p>
 <button id="create">Create</button>
 <button id="cancel">Cancel</button>
 <script>
 
 document.getElementById('create').onclick = () => {
-  const textbox = document.getElementById('count');
-  const count = parseInt(textbox.value, 10);
   const selectbox = document.getElementById('nodeType');
   const nodeType = selectbox.value;
-  parent.postMessage({ pluginMessage: { type: 'create-rectangles', count, nodeType } }, '*')
+  const countbox = document.getElementById('count');
+  const count = parseInt(countbox.value, 10);
+  const widthbox = document.getElementById('width');
+  const width = parseInt(widthbox.value, 10);
+  const heightbox = document.getElementById('height');
+  const height = parseInt(heightbox.value, 10);
+  parent.postMessage({ pluginMessage: { type: 'create-rectangles', nodeType, count, width, height } }, '*')
 }
 
 document.getElementById('cancel').onclick = () => {

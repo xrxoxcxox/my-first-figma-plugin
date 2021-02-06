@@ -4,7 +4,7 @@
 // You can access browser APIs in the <script> tag inside "ui.html" which has a
 // full browser environment (see documentation).
 // This shows the HTML page in "ui.html".
-figma.showUI(__html__);
+figma.showUI(__html__, { height: 300 });
 // Calls to "parent.postMessage" from within the HTML page will trigger this
 // callback. The callback will be passed the "pluginMessage" property of the
 // posted message.
@@ -15,6 +15,7 @@ figma.ui.onmessage = msg => {
         const nodes = [];
         const centerX = figma.viewport.center['x'];
         const centerY = figma.viewport.center['y'];
+        console.log(msg.width, msg.height);
         for (let i = 0; i < msg.count; i++) {
             let node;
             if (msg.nodeType === 'rectangle') {
@@ -25,6 +26,7 @@ figma.ui.onmessage = msg => {
             }
             node.x = centerX + i * 150;
             node.y = centerY;
+            node.resizeWithoutConstraints(msg.width, msg.height);
             node.fills = [{ type: 'SOLID', color: { r: 0.768, g: 0.768, b: 0.768 } }];
             figma.currentPage.appendChild(node);
             nodes.push(node);
