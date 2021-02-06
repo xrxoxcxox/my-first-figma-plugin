@@ -19,20 +19,17 @@ figma.ui.onmessage = msg => {
     const centerX = figma.viewport.center['x'];
     const centerY = figma.viewport.center['y'];
     for (let i = 0; i < msg.count; i++) {
+      let node: RectangleNode | EllipseNode
       if (msg.nodeType === 'rectangle') {
-        const node = figma.createRectangle();
-        node.x = centerX + i * 150;
-        node.y = centerY;
-        node.fills = [{type: 'SOLID', color: {r: 0.768, g: 0.768, b: 0.768}}];
-        nodes.push(node);
+        node = figma.createRectangle();
       } else if (msg.nodeType === 'ellipse') {
-        const node = figma.createEllipse();
-        node.x = centerX + i * 150;
-        node.y = centerY;
-        node.fills = [{type: 'SOLID', color: {r: 0.768, g: 0.768, b: 0.768}}];
-        figma.currentPage.appendChild(node);
-        nodes.push(node);
+        node = figma.createEllipse();
       }
+      node.x = centerX + i * 150;
+      node.y = centerY;
+      node.fills = [{type: 'SOLID', color: {r: 0.768, g: 0.768, b: 0.768}}];
+      figma.currentPage.appendChild(node);
+      nodes.push(node);
     }
     figma.currentPage.selection = nodes;
     figma.viewport.scrollAndZoomIntoView(nodes);
