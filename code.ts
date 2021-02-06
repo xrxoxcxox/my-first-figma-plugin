@@ -26,7 +26,7 @@ figma.ui.onmessage = msg => {
       } else if (msg.nodeType === 'ellipse') {
         node = figma.createEllipse();
       }
-      node.x = centerX + i * 150;
+      node.x = centerX + i * (msg.width + msg.space);
       node.y = centerY;
       node.resizeWithoutConstraints(msg.width, msg.height);
       node.fills = [{type: 'SOLID', color: {r: 0.768, g: 0.768, b: 0.768}}];

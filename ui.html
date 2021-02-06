@@ -18,6 +18,10 @@
   Height:
   <input id="height" value="100">
 </p>
+<p>
+  Space:
+  <input id="space" value="50">
+</p>
 <button id="create">Create</button>
 <button id="cancel">Cancel</button>
 <script>
@@ -31,7 +35,9 @@ document.getElementById('create').onclick = () => {
   const width = parseInt(widthbox.value, 10);
   const heightbox = document.getElementById('height');
   const height = parseInt(heightbox.value, 10);
-  parent.postMessage({ pluginMessage: { type: 'create-rectangles', nodeType, count, width, height } }, '*')
+  const spacebox = document.getElementById('space');
+  const space = parseInt(spacebox.value, 10);
+  parent.postMessage({ pluginMessage: { type: 'create-rectangles', nodeType, count, width, height, space } }, '*')
 }
 
 document.getElementById('cancel').onclick = () => {
